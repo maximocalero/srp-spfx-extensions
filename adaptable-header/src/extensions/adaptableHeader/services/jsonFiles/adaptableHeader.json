@@ -1,0 +1,31 @@
+[
+    {
+        "id": 1,
+        "pageName": "Home.aspx",
+        "componentsToShow": [
+            "globalNavigation",
+            "shortcuts",
+            "adaptableSearchBox"
+        ],
+        "styleInjection": true,
+        "stylesToInject": "[class='ms-compositeHeader root-108 ms-compositeHeader-full']{display:none;}"
+    },
+    {
+        "id": 1,
+        "pageName": "viewlsts.aspx",
+        "componentsToShow": [
+            "globalNavigation"
+        ],
+        "styleInjection": false,
+        "stylesToInject": ""
+    },
+    {
+        "id": 1,
+        "pageName": "AllItems.aspx",
+        "componentsToShow": [
+            "globalNavigation"
+        ],
+        "styleInjection": false,
+        "stylesToInject": ""
+    }
+]
