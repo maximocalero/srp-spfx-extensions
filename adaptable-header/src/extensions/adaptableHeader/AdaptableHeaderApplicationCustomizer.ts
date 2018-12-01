@@ -68,16 +68,16 @@ export default class AdaptableHeaderApplicationCustomizer
       const pageName: string = urlArray[urlArray.length-1];
       let dataService:IDataService;
 
-      if (Environment.type == EnvironmentType.Local){
-        dataService = new MockDataService();
-      }else if (Environment.type === EnvironmentType.SharePoint){
-        dataService = new DataService({
-          spHttpClient: this.context.spHttpClient,
-          siteAbsoluteUrl: pageUrl,
-          context: this.context,
-        });  
-      }
-      
+      // if (Environment.type == EnvironmentType.Local){
+      //   dataService = new MockDataService();
+      // }else if (Environment.type === EnvironmentType.SharePoint){
+      //   dataService = new DataService({
+      //     spHttpClient: this.context.spHttpClient,
+      //     siteAbsoluteUrl: pageUrl,
+      //     context: this.context,
+      //   });  
+      // }
+      dataService = new MockDataService();
       const pageHeaderConfig: PageHeaderConfig = await dataService.getHeaderConfiguration(pageName);
       const globalNavigation:NavigationItem[] = await dataService.getNavigation(StringConstants.GlobalNavigationKey);
       

@@ -9,7 +9,7 @@ export class MockDataService implements IDataService{
             return this.globalNavigation();
         }
         if (propertyName === StringConstants.ShortcutsNavigationKey){
-            return this.shortCuts();
+            return <NavigationItem[]>this._shorCuts;
         }
     }
 
@@ -20,37 +20,61 @@ export class MockDataService implements IDataService{
         return pageHeaderConf[0];
     }
 
+    private _shorCuts: NavigationItem[] = 
+    [
+        {
+            "name": "My site",
+            "url": "https://sirpointdevs-my.sharepoint.com",
+            "description": "Onedrive",
+            "target": "",
+            "className" : "ms-Icon ms-Icon--OneDrive"
+        },
+        {
+            "name": "Office 365 Delve",
+            "url": "https://nam.delve.office.com/",
+            "description": "Office 365 Delve site",
+            "target": "",
+            "className" : "ms-Icon ms-Icon--DelveLogo"
+        },
+        {
+            "name": "All Users Directory",
+            "url": "https://outlook.office.com/owa/?realm=sirpoint.com&exsvurl=1&ll-cc=1033&modurl=0&path=/people",
+            "description": "All Users Directory",
+            "target": "",
+            "className" : "ms-Icon ms-Icon--People"
+        }      
+    ];
 
-    private shortCuts = (): NavigationItem[] => {
-        return (
-            [
-                {
-                    "name": "My site",
-                    "url": "https://sirpointdevs-my.sharepoint.com",
-                    "description": "Onedrive",
-                    "target": "",
-                    "iconName": "OneDrive",
-                    "className" : "ms-Icon ms-Icon--OneDrive"
-                },
-                {
-                    "name": "Office 365 Delve",
-                    "url": "https://nam.delve.office.com/",
-                    "description": "Office 365 Delve site",
-                    "target": "",
-                    "iconName": "DelveLogo",
-                    "className" : "ms-Icon ms-Icon--DelveLogo"
-                },
-                {
-                    "name": "All Users Directory",
-                    "url": "https://outlook.office.com/owa/?realm=sirpoint.com&exsvurl=1&ll-cc=1033&modurl=0&path=/people",
-                    "description": "All Users Directory",
-                    "target": "",
-                    "iconName": "CompanyDirectory",
-                    "className" : "ms-Icon ms-Icon--CompanyDirectory"
-                }
-            ]            
-        );
-    }
+    // private shortCuts = (): NavigationItem[] => {
+    //     return (
+    //         [
+    //             {
+    //                 "name": "My site",
+    //                 "url": "https://sirpointdevs-my.sharepoint.com",
+    //                 "description": "Onedrive",
+    //                 "target": "",
+    //                 "iconName": "OneDrive",
+    //                 "className" : "ms-Icon ms-Icon--OneDrive"
+    //             },
+    //             {
+    //                 "name": "Office 365 Delve",
+    //                 "url": "https://nam.delve.office.com/",
+    //                 "description": "Office 365 Delve site",
+    //                 "target": "",
+    //                 "iconName": "DelveLogo",
+    //                 "className" : "ms-Icon ms-Icon--DelveLogo"
+    //             },
+    //             {
+    //                 "name": "All Users Directory",
+    //                 "url": "https://outlook.office.com/owa/?realm=sirpoint.com&exsvurl=1&ll-cc=1033&modurl=0&path=/people",
+    //                 "description": "All Users Directory",
+    //                 "target": "",
+    //                 "iconName": "CompanyDirectory",
+    //                 "className" : "ms-Icon ms-Icon--CompanyDirectory"
+    //             }
+    //         ]            
+    //     );
+    // }
 
     private globalNavigation = (): NavigationItem[] => {
         return(
