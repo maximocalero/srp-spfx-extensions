@@ -1,4 +1,5 @@
 import { NavigationItem, PageHeaderConfig } from "../common/CommonInterfaces";
+import { IDataService } from "../services/DataServiceInterfaces";
 
 export interface AdaptableTopAreaProps{
     title: string;
@@ -7,4 +8,5 @@ export interface AdaptableTopAreaProps{
     shortcutItems: NavigationItem[];
     pageHeaderConfig: PageHeaderConfig;
     currentUrl: string;
+    dataService: IDataService;
 }

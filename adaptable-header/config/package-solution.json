@@ -4,7 +4,7 @@
     "name": "adaptable-header-client-side-solution",
     "id": "0db53d11-af65-4483-acb4-4654949f3567",
     "version": "1.0.0.0",
-    "includeClientSideAssets": true,
+    "includeClientSideAssets": false,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "features": [

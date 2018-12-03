@@ -44,21 +44,53 @@ export default class AdaptableTopArea extends React.Component<AdaptableTopAreaPr
           };         
     }
 
-    protected onChange = e => {     
+    private async onChange(event) {     
         // let { suggestions } = this.props;
-        const userInput = e.currentTarget.value;
+        const inputValue = event.currentTarget.value;
+        // if (userInput.length < 3)
+        //     return;
+        let filteredSuggestions: string[] = [];
 
-        const filteredSuggestions = this._suggestions.filter(
-            suggestion =>
-            suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        );
+        if (inputValue.length > 3){
+            const results = await this.props.dataService.getSearchResults(inputValue);
+            if (results && results.length > 0){
+                results.forEach(result =>{
+                    filteredSuggestions.push(result.title);
+                })
 
+            }    
+        }
         this.setState({
             activeSuggestion: 0,
             filteredSuggestions,
             showSuggestions: true,
-            userInput: e.currentTarget.value
+            userInput: inputValue
         });
+        // this.props.dataService.getSearchResults(userInput).then((results) => {
+        //     if (results && results.length > 0){
+        //         let filteredSuggestions: string[] = [];
+        //         results.forEach(result =>{
+        //             filteredSuggestions.push(result.title);
+        //         })
+        //         this.setState({
+        //             activeSuggestion: 0,
+        //             filteredSuggestions,
+        //             showSuggestions: true,
+        //             userInput: e.currentTarget.value
+        //         });
+        //     }
+        // });
+
+        // const filteredSuggestions = this._suggestions.filter(
+        //     suggestion =>
+        //     suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        // );
+        // this.setState({
+        //     activeSuggestion: 0,
+        //     filteredSuggestions,
+        //     showSuggestions: true,
+        //     userInput: e.currentTarget.value
+        // });
     }
 
     protected onClick = e => {

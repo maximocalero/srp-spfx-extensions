@@ -10,4 +10,12 @@ export interface IHttpConfiguration{
 export interface IDataService {
     getNavigation(propertyName: string):Promise<NavigationItem[]>;
     getHeaderConfiguration(pageName: string): Promise<PageHeaderConfig>;
+    getSearchResults(query: string): Promise<ISearchResult[]>;
+}
+
+export interface ISearchResult {
+    link: string;
+    title: string;
+    description: string;
+    author: string;
 }

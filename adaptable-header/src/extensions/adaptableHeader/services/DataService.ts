@@ -1,9 +1,9 @@
 import { SPHttpClient, SPHttpClientResponse, ISPHttpClientOptions } from '@microsoft/sp-http';
-import { IHttpConfiguration, IDataService } from './DataServiceInterfaces';
+import { IHttpConfiguration, IDataService, ISearchResult } from './DataServiceInterfaces';
 import { NavigationItem, PageHeaderConfig } from '../common/CommonInterfaces';
 import { StringConstants } from '../common/StringConstants';
 import { setup as pnpSetup } from '@pnp/common';
-import { sp, StorageEntity } from '@pnp/sp';
+import { sp, StorageEntity, SearchQueryBuilder } from '@pnp/sp';
 
 export class DataService implements IDataService{
     private spHttpClient: SPHttpClient;
@@ -39,5 +39,29 @@ export class DataService implements IDataService{
         const pageHeaderConf: PageHeaderConfig[] = pagetHeaderConfArray.filter(pageConf => pageConf.pageName === pageName);
 
         return pageHeaderConf[0];
+    }
+
+    public async getSearchResults(query: string): Promise<ISearchResult[]> {
+        let results: ISearchResult[] = [];
+        const queryPath: string = "path:https://sirpointdevs.sharepoint.com/sites/news/SitePages";
+        const queryText: string = `${queryPath} ${query}`
+        const searchResults = await sp.search({
+            Querytext: queryText,
+            RowLimit: 10,
+            StartRow: 0,
+            
+        });
+
+        if (searchResults.PrimarySearchResults.length > 0) {
+            searchResults.PrimarySearchResults.forEach(result=>{
+                results.push({
+                    title: result.Title,
+                    description: result.HitHighlightedSummary,
+                    link: result.Path,
+                    author: result.Author
+                });
+            });
+        }
+        return results;
     }
 }

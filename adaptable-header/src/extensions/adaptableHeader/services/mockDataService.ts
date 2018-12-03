@@ -1,4 +1,4 @@
-import { IDataService } from "./DataServiceInterfaces";
+import { IDataService, ISearchResult } from "./DataServiceInterfaces";
 import { NavigationItem, PageHeaderConfig } from "../common/CommonInterfaces";
 import { StringConstants } from "../common/StringConstants";
 
@@ -18,6 +18,12 @@ export class MockDataService implements IDataService{
         const pageHeaderConf: PageHeaderConfig[] = pagetHeaderConfArray.filter(pageConf => pageConf.pageName === pageName);
 
         return pageHeaderConf[0];
+    }
+
+    public async getSearchResults(query: string): Promise<ISearchResult[]> {
+        let results: ISearchResult[] = [];
+
+        return results;
     }
 
     private _shorCuts: NavigationItem[] = 
